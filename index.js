@@ -1,8 +1,13 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
 // dotenv
 require("dotenv").config();
+
+// middleware to parse json
+app.use(express.json());
+app.use(cors());
 
 // routes
 const authRoutes = require("./routes/auth");
@@ -15,9 +20,6 @@ const { urlNotFound, errorHandler } = require("./middlewares/errorMiddleware");
 // connect to DB
 const { connectToDB } = require("./config/db");
 connectToDB();
-
-// middleware to parse json
-app.use(express.json());
 
 // routes
 // auth
